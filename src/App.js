@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Navigate, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import Nav from "./components/nav/Nav";
+import CreateProduct from "./pages/createProduct/CreateProduct";
+import Products from "./pages/products/Products";
 
-function App() {
+import "react-toastify/dist/ReactToastify.css";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Nav />
+      <Routes>
+        <Route exact path="/create-product" element={<CreateProduct />} />
+        <Route exact path="/products" element={<Products />} />
+        <Route path="*" element={<Navigate to="/create-product" />} />
+      </Routes>
+      <ToastContainer autoClose={3000} position="top-center" />
+    </>
   );
-}
+};
 
 export default App;
